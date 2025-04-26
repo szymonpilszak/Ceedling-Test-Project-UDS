@@ -12,10 +12,6 @@
   :line: 25
   :message: ''
   :unity_test_time: 0
-- :test: test_ReadDataByIdentifier_request_max_length_should_return_error
-  :line: 37
-  :message: ''
-  :unity_test_time: 0
 - :test: test_ReadDataByIdentifier_did_max_uint16_should_return_error
   :line: 52
   :message: ''
@@ -24,12 +20,16 @@
   :line: 64
   :message: ''
   :unity_test_time: 0
-:failures: []
+:failures:
+- :test: test_ReadDataByIdentifier_request_max_length_should_return_error
+  :line: 48
+  :message: Expected 0 Was 5
+  :unity_test_time: 0
 :ignores: []
 :counts:
   :total: 5
-  :passed: 5
-  :failed: 0
+  :passed: 4
+  :failed: 1
   :ignored: 0
 :stdout: []
-:time: 0.3405112000000372
+:time: 1.7449687999996968
