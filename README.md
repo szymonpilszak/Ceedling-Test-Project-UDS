@@ -3,6 +3,7 @@
 ![Build Status](https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C/actions/workflows/ci.yml/badge.svg)
 
 ***COVERAGE REPORTS***
+
 https://szymonpilszak.github.io/UDS-Diagnostic-Service-Demo-Ceedling-C/coverage_report.html
 https://szymonpilszak.github.io/UDS-Diagnostic-Service-Demo-Ceedling-C/coverage_report.functions.html
 
