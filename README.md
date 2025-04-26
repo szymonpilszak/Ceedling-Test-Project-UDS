@@ -1,4 +1,4 @@
-***UDS 0x22 Service Example Project***
+***UDS 0x22 Service Example TEST Project***
 
 Overview
 
