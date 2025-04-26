@@ -2,6 +2,8 @@
 #define CONFIG_H
 
 #include <stdint.h>
+#include <stddef.h>
+
 
 #define E_OK        0
 #define E_NOT_OK    1
