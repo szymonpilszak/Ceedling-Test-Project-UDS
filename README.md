@@ -22,5 +22,7 @@ This project demonstrates unit testing for an embedded C implementation of the U
   -  Unity test framework (included with Ceedling)
 
 ***Getting Started***
+  -  Ensure you have Ruby installed (required for Ceedling): Download from https://rubyinstaller.org/  
   -  Install Ceedling: gem install ceedling
+  -  Clone the Repository : git clone https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C.git
   -  Build and run tests: ceedling test:all
