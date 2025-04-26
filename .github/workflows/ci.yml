@@ -36,8 +36,8 @@ jobs:
     - name: proba ostateczna
       run:  gcovr -r . --html --html-details -o coverage_report.html
 
-    - name: Generate Coverage Report
-      run: ceedling gcov:all
+#    - name: Generate Coverage Report
+#     run: ceedling gcov:all
 
     - name: Upload Coverage Report
       uses: actions/upload-artifact@v4
