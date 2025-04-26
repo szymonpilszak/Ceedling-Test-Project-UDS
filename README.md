@@ -1,6 +1,6 @@
 ***UDS 0x22 Service Example TEST Project***
 
-![Build Status](https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C/UDS_unit/actions/workflows/ci.yml/badge.svg)
 
 
 Overview
