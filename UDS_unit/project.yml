@@ -405,30 +405,4 @@
 
 
 
-:tools:
-  :gcov_compiler:
-    :executable: gcc
-    :name: 'GCC GCOV'
-    :arguments:
-      - -fprofile-arcs
-      - -ftest-coverage
-      - -g
-      - -O0
-  :gcov_linker:
-    :executable: gcc
-    :name: 'GCC GCOV Linker'
-    :arguments:
-      - -fprofile-arcs
-      - -ftest-coverage
-      - -g
-      - -O0
-
-      
-:gcov_flags:
-  :compile:
-    - -fprofile-arcs
-    - -ftest-coverage
-  :link:
-    - -fprofile-arcs
-    - -ftest-coverage
 ...
