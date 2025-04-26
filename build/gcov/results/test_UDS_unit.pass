@@ -1,0 +1,43 @@
+---
+:source:
+  :file: test/test_UDS_unit.c
+  :dirname: test
+  :basename: test_UDS_unit.c
+:successes:
+- :test: test_ReadDataByIdentifier_request_is_null_should_return_error
+  :line: 8
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_response_is_null_should_return_error
+  :line: 17
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_respLen_is_null_should_return_error
+  :line: 26
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_invalid_length_should_return_error
+  :line: 35
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_invalid_did_should_return_error
+  :line: 45
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_valid_did_should_return_ok
+  :line: 55
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_LinSendData_fails_should_return_error
+  :line: 74
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 7
+  :passed: 7
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.539341499999864
