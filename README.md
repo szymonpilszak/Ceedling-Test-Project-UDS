@@ -4,8 +4,9 @@
 
 ***COVERAGE REPORTS***
 
-https://szymonpilszak.github.io/UDS-Diagnostic-Service-Demo-Ceedling-C/coverage_report.html
-https://szymonpilszak.github.io/UDS-Diagnostic-Service-Demo-Ceedling-C/coverage_report.functions.html
+**-**  https://szymonpilszak.github.io/UDS-Diagnostic-Service-Demo-Ceedling-C/coverage_report.html
+
+**-**  https://szymonpilszak.github.io/UDS-Diagnostic-Service-Demo-Ceedling-C/coverage_report.functions.html
 
 
 Overview
