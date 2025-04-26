@@ -8,8 +8,9 @@ This project demonstrates unit testing for an embedded C implementation of the U
   -  Unit tests for UDS 0x22 service handler
   -  Example implementation of ReadDataByIdentifier service
   -  Ceedling test framework configuration
-  -  Mocking of hardware dependencies
-  -  Designed for embedded systems
+  -  Mocking of hardware dependencies (e.g., communication layers)
+  -  Designed for embedded systems (AUTOSAR-like structure)
+  - Generation of code coverage reports (GCOV + GCOVR)
 
 ***Future Plans***
   -  Add more UDS services (0x10, 0x27, etc.)
@@ -17,12 +18,15 @@ This project demonstrates unit testing for an embedded C implementation of the U
   -  Add continuous integration pipeline
 
 ***Requirements***
-  -  Ruby (for Ceedling)
-  -  GCC or other C cross-compiler
-  -  Unity test framework (included with Ceedling)
+- **Ruby** (for Ceedling) — [Download Ruby](https://rubyinstaller.org/)
+- **Ceedling** — Unit test framework based on Unity & CMock
+- **Python 3** (for gcovr code coverage reporting)
+- **GCC** (or compatible C compiler like MinGW-w64 on Windows)
+- **gcovr** (Python tool for code coverage visualization)
 
 ***Getting Started***
   -  Ensure you have Ruby installed (required for Ceedling): Download from https://rubyinstaller.org/  
   -  Install Ceedling: gem install ceedling
+  -  Install Python and gcovr
   -  Clone the Repository : git clone https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C.git
   -  Build and run tests: ceedling test:all
