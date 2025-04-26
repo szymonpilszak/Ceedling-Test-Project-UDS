@@ -30,9 +30,9 @@ jobs:
     - name: Install gcovr
       run: pip install gcovr
 
-   # Zmieniamy katalog roboczy na 'UDS_unit'
-   - name: Change working directory to UDS_unit
-       run: cd UDS_unit
+    # Zmieniamy katalog roboczy na 'UDS_unit'
+    - name: Change working directory to UDS_unit
+      run: cd UDS_unit
 
     - name: Build and Run Tests
       run: ceedling test:all
