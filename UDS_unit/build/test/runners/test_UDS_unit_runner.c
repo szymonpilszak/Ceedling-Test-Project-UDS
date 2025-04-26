@@ -2,12 +2,13 @@
 
 /*=======Automagically Detected Files To Include=====*/
 #include "unity.h"
+#include "cmock.h"
 /* injected defines for unity settings, etc */
 #ifndef UNITY_EXCLUDE_FLOAT
 #define UNITY_EXCLUDE_FLOAT
 #endif /* UNITY_EXCLUDE_FLOAT */
-#include "mock_lin_transport.h"
 #include "uds_services.h"
+#include "mock_lin_transport.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -31,12 +32,15 @@ static void CMock_Init(void)
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
+  mock_lin_transport_Init();
 }
 static void CMock_Verify(void)
 {
+  mock_lin_transport_Verify();
 }
 static void CMock_Destroy(void)
 {
+  mock_lin_transport_Destroy();
 }
 
 /*=======Test Reset Options=====*/
@@ -122,5 +126,6 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
   run_test(test_ReadDataByIdentifier_valid_did_should_return_ok, "test_ReadDataByIdentifier_valid_did_should_return_ok", 55);
   run_test(test_ReadDataByIdentifier_LinSendData_fails_should_return_error, "test_ReadDataByIdentifier_LinSendData_fails_should_return_error", 74);
 
+  CMock_Guts_MemFreeFinal();
   return UNITY_END();
 }
