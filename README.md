@@ -25,7 +25,7 @@ This project demonstrates unit testing for an embedded C implementation of the U
 - **gcovr** (Python tool for code coverage visualization)
 
 ***Getting Started***
-  -  Ensure you have Ruby installed (required for Ceedling): Download from https://rubyinstaller.org/  
+  -  Ensure you have Ruby installed (required for Ceedling)
   -  Install Ceedling: gem install ceedling
   -  Install Python and gcovr
   -  Clone the Repository : git clone https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C.git
