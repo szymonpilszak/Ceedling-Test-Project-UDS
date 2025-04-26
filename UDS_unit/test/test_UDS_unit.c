@@ -1,5 +1,5 @@
 #include "unity.h"
-#include "mock_lin_transport.h" // Mockujemy lin_transport!
+#include "mock_lin_transport.h" // Mock lin_transport
 #include "uds_services.h"
 
 void setUp(void) {}
@@ -58,7 +58,7 @@ void test_ReadDataByIdentifier_valid_did_should_return_ok(void)
     uint8_t response[8] = {0};
     uint8_t respLen = 0;
 
-    Lin_SendData_ExpectAndReturn(response, 5, E_OK); // Oczekujemy poprawnego wywołania Lin_SendData
+    Lin_SendData_ExpectAndReturn(response, 5, E_OK); // Positive response from Lin_SendData
 
     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
 
@@ -77,7 +77,7 @@ void test_ReadDataByIdentifier_LinSendData_fails_should_return_error(void)
     uint8_t response[8] = {0};
     uint8_t respLen = 0;
 
-    Lin_SendData_ExpectAndReturn(response, 5, E_NOT_OK); // Symulujemy błąd w Lin_SendData
+    Lin_SendData_ExpectAndReturn(response, 5, E_NOT_OK); // Negative response from Lin_SendData 
 
     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
 
