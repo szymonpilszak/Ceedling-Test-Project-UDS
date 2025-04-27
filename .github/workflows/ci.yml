@@ -34,7 +34,7 @@ jobs:
       run: ceedling test:all
 
     - name: Generate Coverage Report
-       run: ceedling gcov:all
+      run: ceedling gcov:all
 
     - name: Detail report
       run:  gcovr -r . --html --html-details -o coverage_report.html     
