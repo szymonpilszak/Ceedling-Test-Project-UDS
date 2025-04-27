@@ -1,0 +1,55 @@
+        -:    0:Source:src/uds_services.c
+        -:    0:Graph:C:\UDS_SWE4\build\gcov\out\test_UDS_unit\uds_services.gcno
+        -:    0:Data:C:\UDS_SWE4\build\gcov\out\test_UDS_unit\uds_services.gcda
+        -:    0:Runs:2
+        -:    1:
+        -:    2:#include "uds_services.h"
+        -:    3:#include "config.h"
+        -:    4:#include "lin_transport.h"
+        -:    5:
+        -:    6:static const uint8_t mockData[2] = {0xDE, 0xAD};
+        -:    7:
+       14:    8:Std_ReturnType Uds_Service_ReadDataByIdentifier(const uint8_t* request, uint8_t reqLen, uint8_t* response, uint8_t* respLen) 
+        -:    9:{
+       14:   10:    Std_ReturnType retVal = E_NOT_OK;
+        -:   11:    
+       14:   12:    if ((request == NULL) || (response == NULL) || (respLen == NULL))
+        -:   13:    {
+        6:   14:        return E_NOT_OK;
+        -:   15:    }
+        -:   16:
+        8:   17:    if (reqLen != 3U) 
+        -:   18:    {
+        2:   19:        retVal = E_NOT_OK;
+        -:   20:    }
+        -:   21:    else 
+        -:   22:    {
+        6:   23:        uint16_t did = ((uint16_t)request[1] << 8U) | (uint16_t)request[2];
+        -:   24:
+        6:   25:        if (did == 0x1234U) 
+        -:   26:        {
+        4:   27:            response[0] = 0x62U;
+        4:   28:            response[1] = request[1];
+        4:   29:            response[2] = request[2];
+        4:   30:            response[3] = mockData[0];
+        4:   31:            response[4] = mockData[1];
+        4:   32:            *respLen = 5U;
+        -:   33:
+        -:   34:            /* Send response via LIN */
+        4:   35:            if (Lin_SendData(response, *respLen) != E_OK) 
+        -:   36:            {
+        2:   37:                retVal = E_NOT_OK;
+        -:   38:            }
+        -:   39:            else 
+        -:   40:            {
+        2:   41:                retVal = E_OK;
+        -:   42:            }
+        -:   43:        }
+        -:   44:        else 
+        -:   45:        {
+        2:   46:            retVal = E_NOT_OK;
+        -:   47:        }
+        -:   48:    }
+        -:   49:
+        8:   50:    return retVal;
+        -:   51:}
