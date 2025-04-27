@@ -2,7 +2,7 @@
 
 ![Build Status](https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C/actions/workflows/ci.yml/badge.svg)
 
-![Coverage Status](https://img.shields.io/badge/coverage-100%25-brightgreen)
+
 
 ***COVERAGE REPORTS***
 
