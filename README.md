@@ -14,8 +14,6 @@ Overview
 This project demonstrates unit testing for an embedded C implementation of the UDS (Unified Diagnostic Services) 0x22 ReadDataByIdentifier service using the Ceedling test framework.
 
 
-TEST REPORTS:
-https://szymonpilszak.github.io/UDS-Diagnostic-Service-Demo-Ceedling-C/coverage_report.html
 ***Key Features***
   -  Unit tests for UDS 0x22 service handler
   -  Example implementation of ReadDataByIdentifier service
