@@ -30,6 +30,9 @@ jobs:
     - name: Install gcovr
       run: pip install gcovr
 
+    - name: Check directory structure
+      run:  ls -R
+
     - name: Build and Run Tests
       run: ceedling test:all
 
