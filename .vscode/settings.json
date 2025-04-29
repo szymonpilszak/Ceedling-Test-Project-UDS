@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdint.h": "c",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "uds_services.h": "c"
     }
 }
