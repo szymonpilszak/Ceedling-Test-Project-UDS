@@ -1,3 +1,16 @@
+/****************************************************************************/
+/*! 
+    @file   test_uds_services.c
+
+    @brief  This part of file contains unit tests of 
+            file: uds_service.c
+
+            Containing functions:
+            - Uds_Service_ReadDataByIdentifier()
+            - *more functions to add in future*
+ ****************************************************************************/
+
+
 #include "unity.h"
 #include "mock_lin_transport.h" // Mock lin_transport
 #include "uds_services.h"
@@ -5,7 +18,7 @@
 void setUp(void) {}
 void tearDown(void) {}
 
-void test_ReadDataByIdentifier_request_is_null_should_return_error(void)
+void test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_error(void)
 {
     uint8_t response[8];
     uint8_t respLen;
@@ -14,7 +27,7 @@ void test_ReadDataByIdentifier_request_is_null_should_return_error(void)
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
 
-void test_ReadDataByIdentifier_response_is_null_should_return_error(void)
+void test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_error(void)
 {
     uint8_t request[] = {0x22, 0x12, 0x34};
     uint8_t respLen;
@@ -23,7 +36,7 @@ void test_ReadDataByIdentifier_response_is_null_should_return_error(void)
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
 
-void test_ReadDataByIdentifier_respLen_is_null_should_return_error(void)
+void test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_error(void)
 {
     uint8_t request[] = {0x22, 0x12, 0x34};
     uint8_t response[8];
@@ -32,7 +45,7 @@ void test_ReadDataByIdentifier_respLen_is_null_should_return_error(void)
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
 
-void test_ReadDataByIdentifier_invalid_length_should_return_error(void)
+void test_Uds_Service_ReadDataByIdentifier_invalid_length_should_return_error(void)
 {
     uint8_t request[] = {0x22, 0x12};
     uint8_t response[8];
@@ -42,7 +55,7 @@ void test_ReadDataByIdentifier_invalid_length_should_return_error(void)
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
 
-void test_ReadDataByIdentifier_invalid_did_should_return_error(void)
+void test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_error(void)
 {
     uint8_t request[] = {0x22, 0xAB, 0xCD};
     uint8_t response[8];
@@ -52,7 +65,7 @@ void test_ReadDataByIdentifier_invalid_did_should_return_error(void)
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
 
-void test_ReadDataByIdentifier_valid_did_should_return_ok(void)
+void test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_ok(void)
 {
     uint8_t request[] = {0x22, 0x12, 0x34};
     uint8_t response[8] = {0};
@@ -71,7 +84,7 @@ void test_ReadDataByIdentifier_valid_did_should_return_ok(void)
     TEST_ASSERT_EQUAL_UINT8(0xAD, response[4]);
 }
 
-void test_ReadDataByIdentifier_LinSendData_fails_should_return_error(void)
+void test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_error(void)
 {
     uint8_t request[] = {0x22, 0x12, 0x34};
     uint8_t response[8] = {0};
