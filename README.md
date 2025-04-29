@@ -33,11 +33,12 @@ This project demonstrates unit testing for an embedded C implementation of the U
 - **Ruby** (for Ceedling) — [Download Ruby](https://rubyinstaller.org/)
 - **Ceedling** — Unit test framework based on Unity & CMock
 - **Python 3** (for gcovr code coverage reporting)
-- **GCC** (or compatible C compiler like MinGW-w64 on Windows)
+- **GCC** ( v13.3 or compatible C compiler like MinGW-w64 on Windows)
 - **gcovr** (Python tool for code coverage visualization)
 
 ***Getting Started***
   -  Ensure you have Ruby installed (required for Ceedling)
+  -  Ensure you have gcc installed (v13.3)
   -  Install Ceedling: gem install ceedling
   -  Install Python and gcovr
   -  Clone the Repository : git clone https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C.git
