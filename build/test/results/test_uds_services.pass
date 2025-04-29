@@ -4,32 +4,32 @@
   :dirname: test
   :basename: test_uds_services.c
 :successes:
-- :test: test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_error
-  :line: 21
+- :test: test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK
+  :line: 22
   :message: ''
   :unity_test_time: 0
-- :test: test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_error
-  :line: 30
+- :test: test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK
+  :line: 31
   :message: ''
   :unity_test_time: 0
-- :test: test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_error
-  :line: 39
+- :test: test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK
+  :line: 40
   :message: ''
   :unity_test_time: 0
-- :test: test_Uds_Service_ReadDataByIdentifier_invalid_length_should_return_error
-  :line: 48
+- :test: test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK
+  :line: 52
   :message: ''
   :unity_test_time: 0
-- :test: test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_error
-  :line: 58
+- :test: test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK
+  :line: 62
   :message: ''
   :unity_test_time: 0
-- :test: test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_ok
-  :line: 68
+- :test: test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK
+  :line: 72
   :message: ''
   :unity_test_time: 0
-- :test: test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_error
-  :line: 87
+- :test: test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK
+  :line: 91
   :message: ''
   :unity_test_time: 0
 :failures: []
@@ -40,4 +40,4 @@
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.11723129999882076
+:time: 0.17660720000276342

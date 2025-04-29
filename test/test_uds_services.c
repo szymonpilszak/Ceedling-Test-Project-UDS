@@ -18,6 +18,7 @@
 void setUp(void) {}
 void tearDown(void) {}
 
+/* TEST for: NULL pointer checks */
 void test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK(void)
 {
     uint8_t response[8];
@@ -44,6 +45,9 @@ void test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_O
 
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
+/* End of NULL pointer checks */
+
+
 
 void test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK(void)
 {
@@ -96,3 +100,6 @@ void test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT
 
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
+
+
+/* End of file */

@@ -17,13 +17,13 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_error(void);
-extern void test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_error(void);
-extern void test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_error(void);
-extern void test_Uds_Service_ReadDataByIdentifier_invalid_length_should_return_error(void);
-extern void test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_error(void);
-extern void test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_ok(void);
-extern void test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_error(void);
+extern void test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK(void);
+extern void test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK(void);
+extern void test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK(void);
+extern void test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK(void);
+extern void test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK(void);
+extern void test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK(void);
+extern void test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK(void);
 
 
 /*=======Mock Management=====*/
@@ -98,19 +98,19 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
     {
       UnityPrint("test_uds_services.");
       UNITY_PRINT_EOL();
-      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_error");
+      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK");
       UNITY_PRINT_EOL();
-      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_error");
+      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK");
       UNITY_PRINT_EOL();
-      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_error");
+      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK");
       UNITY_PRINT_EOL();
-      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_invalid_length_should_return_error");
+      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK");
       UNITY_PRINT_EOL();
-      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_error");
+      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK");
       UNITY_PRINT_EOL();
-      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_ok");
+      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK");
       UNITY_PRINT_EOL();
-      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_error");
+      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK");
       UNITY_PRINT_EOL();
       return 0;
     }
@@ -118,13 +118,13 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
   }
 #endif
   UnityBegin("test_uds_services.c");
-  run_test(test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_error, "test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_error", 21);
-  run_test(test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_error, "test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_error", 30);
-  run_test(test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_error, "test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_error", 39);
-  run_test(test_Uds_Service_ReadDataByIdentifier_invalid_length_should_return_error, "test_Uds_Service_ReadDataByIdentifier_invalid_length_should_return_error", 48);
-  run_test(test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_error, "test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_error", 58);
-  run_test(test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_ok, "test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_ok", 68);
-  run_test(test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_error, "test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_error", 87);
+  run_test(test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK", 22);
+  run_test(test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK", 31);
+  run_test(test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK", 40);
+  run_test(test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK", 52);
+  run_test(test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK", 62);
+  run_test(test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK, "test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK", 72);
+  run_test(test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK", 91);
 
   CMock_Guts_MemFreeFinal();
   return UNITY_END();
