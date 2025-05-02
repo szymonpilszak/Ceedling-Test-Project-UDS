@@ -1,4 +1,4 @@
-  <h1 align="center"> ****UDS 0x22 Service Example TEST Project****</h1>
+  <h1 align="center"> UDS 0x22 Service Example TEST Project</h1>
 
 ***Build Status***
 
