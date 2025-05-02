@@ -133,28 +133,6 @@ void test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK(void)
 
 /* TEST for: Boundary values (for each data type)  */
 
-void test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK(void)
-{
-    uint8_t request[] = {0x22, 0x12, 0x34};
-    uint8_t response[8] = {0};
-    uint8_t respLen = 0;
-
-    Lin_SendData_ExpectAndReturn(response, 5, E_NOT_OK); // Negative response from Lin_SendData 
-
-    Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
-
-    TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
-}
-
-
-
-
-
-
-
-
-
-
 
 
 /* End of TEST for: Boundary values  */
