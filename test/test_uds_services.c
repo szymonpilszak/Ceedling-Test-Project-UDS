@@ -1,14 +1,14 @@
-/**********************************************************************************************************************************/
+/****************************************************************************************************************************************************************************************************************************/
 /*! 
     @file   test_uds_services.c
 
-    @brief  This part of file contains unit tests of 
+    @brief  This  file contains unit tests of :
             file: uds_service.c
 
             Including test for functions:
             - Uds_Service_ReadDataByIdentifier()
             - *more functions to add in future*
- **********************************************************************************************************************************/
+ *****************************************************************************************************************************************************************************************************************************/
 
 
 #include "unity.h"
@@ -24,35 +24,55 @@ void tearDown(void) {}
 
 /******************************************************************************************************************************** */
 /*! 
-    @brief:              This test checks if function return positive reposne to valid DID 
+    @brief:              This test checks if function returns E_NOT_OK for invalid poniter to request(NULL)
 
     @param  request :    NULL
-    @param  response:    *min* (0)
-    @param  respLen :    *min* (0)
+    @param  reqLen :     *min*    
+    @param  response:    *min* 
+    @param  respLen :    *min* 
+
 
  **********************************************************************************************************************************/
 void test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK(void)
 {
-    uint8_t response[8];
-    uint8_t respLen;
+    uint8_t response[8] = {0x00};
+    uint8_t respLen = 0x00;
     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(NULL, 3, response, &respLen);
 
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
 
+/******************************************************************************************************************************** */
+/*! 
+    @brief:              This test checks if function returns E_NOT_OK for invalid poniter to response(NULL)
+
+    @param  request :    *min*
+    @param  response:    NULL
+    @param  respLen :    *min* 
+
+ **********************************************************************************************************************************/
 void test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK(void)
 {
-    uint8_t request[] = {0x22, 0x12, 0x34};
-    uint8_t respLen;
+    uint8_t request[] = {0x00, 0x00, 0x00};
+    uint8_t respLen = 0x00;
     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, NULL, &respLen);
 
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
 
+/******************************************************************************************************************************** */
+/*! 
+    @brief:              This test checks if function returns E_NOT_OK for invalid poniter to respLen(NULL)
+
+    @param  request :    *min*
+    @param  response:    *min*
+    @param  respLen :    *NULL* 
+
+ **********************************************************************************************************************************/
 void test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK(void)
 {
-    uint8_t request[] = {0x22, 0x12, 0x34};
-    uint8_t response[8];
+    uint8_t request[] = {0x00, 0x00, 0x00};
+    uint8_t response[8] = {0x00};
     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, NULL);
 
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
@@ -153,7 +173,7 @@ void test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK(void)
  **********************************************************************************************************************************/
 
 
-/* ********************************************************************************************* End of TEST for: happy path() ********************************************************************************************* */
+/* ********************************************************************************************* End of TEST for: Boundary values (for each data type)  ********************************************************************************************* */
 /* ************************************************************************************************************************************************************************************************************************* */
 /* ************************************************************************************************************************************************************************************************************************* */
 
