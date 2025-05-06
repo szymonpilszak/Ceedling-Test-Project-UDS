@@ -21,15 +21,15 @@
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK
-  :line: 168
+  :line: 192
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK
-  :line: 179
+  :line: 227
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK
-  :line: 202
+  :line: 252
   :message: ''
   :unity_test_time: 0
 :failures: []
@@ -40,4 +40,4 @@
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.21363689999998314
+:time: 0.15843970000059926

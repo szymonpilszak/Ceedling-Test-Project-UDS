@@ -46,7 +46,7 @@ void tearDown(void) {}
  **********************************************************************************************************************************/
 void test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK(void)
 {
-    uint8_t* request = NULL;
+    uint8_t* request = NULL;    /* Invalid request */
     uint8_t reqLen = 0;
     uint8_t response[8] = {0x00};
     uint8_t respLen = 0x00;
@@ -81,7 +81,7 @@ void test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_
 {
     uint8_t request[] = {0x00, 0x00, 0x00};
     uint8_t reqLen = 0;
-    uint8_t* response = NULL;
+    uint8_t* response = NULL;   /* Invalid response  */
     uint8_t respLen = 0x00;
 
 
@@ -116,7 +116,7 @@ void test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_O
     uint8_t request[] = {0x00, 0x00, 0x00};
     uint8_t reqLen = 0;
     uint8_t response[8] = {0x00};
-    uint8_t* respLen = NULL;
+    uint8_t* respLen = NULL;     /* Invalid response length */
 
     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, respLen);
 
@@ -135,14 +135,14 @@ void test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_O
 
 /******************************************************************************************************************************** */
 /*! 
-    @brief:              This test checks if function returns E_NOT_OK for invalid request length
+    @brief:        This test checks if function returns E_NOT_OK for invalid request length
 
     @param[inout]  request :   Pointer to service request 
-                   Set to  :   *min* (0)    
+                   Set to  :   {0x22, 0x12}    
                    Range   :   uint8_t (0-255)     
 
     @param[in]     reqLen  :   Request length
-                   Set to  :   *min* (0)    
+                   Set to  :   2   
                    Range   :   uint8_t (0-255)          
 
     @param[inout]  response:   Pointer to service response
@@ -157,34 +157,84 @@ void test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_O
  **********************************************************************************************************************************/
 void test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK(void)
 {
-    uint8_t request[] = {0x22, 0x12};
-    uint8_t response[8];
-    uint8_t respLen;
-    Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 2, response, &respLen);
+    uint8_t request[] = {0x22, 0x12};   
+    uint8_t reqLen = 2;                 /* Invalid request length (EXPECTED: 3) */
+    uint8_t response[8] = {0x00};
+    uint8_t respLen = 0x00;
+
+    Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
 
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
 
+/******************************************************************************************************************************** */
+/*! 
+    @brief:        This test checks if function returns E_NOT_OK for invalid DID.
+
+    @param[inout]  request :   Pointer to service request 
+                   Set to  :   {0x22, 0x12}    
+                   Range   :   uint8_t (0-255)     
+
+    @param[in]     reqLen  :   Request length
+                   Set to  :   3 (as expected)   
+                   Range   :   uint8_t (0-255)          
+
+    @param[inout]  response:   Pointer to service response
+                   Set to  :   *min* (0)    
+                   Range   :   uint8_t (0-255)       
+                   
+    @param[inout]  respLen :   Pointer to response length
+                   Set to  :   *min* (0)    
+                   Range   :   uint8_t (0-255)        
+    
+
+ **********************************************************************************************************************************/
 void test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK(void)
 {
     uint8_t request[] = {0x22, 0xAB, 0xCD};
-    uint8_t response[8];
-    uint8_t respLen;
-    Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
+    uint8_t reqLen = 3;
+    uint8_t response[8] = {0};
+    uint8_t respLen = 0;
+    Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
 
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
 
 
+/******************************************************************************************************************************** */
+/*! 
+    @brief:        This test checks if function returns E_NOT_OK if return from mocked function LinSendData()
+                   is different than E_OK.
+
+    @param[inout]  request :   Pointer to service request 
+                   Set to  :   {0x22, 0x12, 0x34}    
+                   Range   :   uint8_t (0-255)     
+
+    @param[in]     reqLen  :   Request length
+                   Set to  :   3 (as expected)   
+                   Range   :   uint8_t (0-255)          
+
+    @param[inout]  response:   Pointer to service response
+                   Set to  :   *min* (0)    
+                   Range   :   uint8_t (0-255)       
+                   
+    @param[inout]  respLen :   Pointer to response length
+                   Set to  :   *min* (0)    
+                   Range   :   uint8_t (0-255)        
+    
+
+ **********************************************************************************************************************************/
 void test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK(void)
 {
     uint8_t request[] = {0x22, 0x12, 0x34};
+    uint8_t reqLen = 3;
     uint8_t response[8] = {0};
     uint8_t respLen = 0;
 
+
     Lin_SendData_ExpectAndReturn(response, 5, E_NOT_OK); // Negative response from Lin_SendData()
 
-    Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
+    Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
 
     TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
 }
