@@ -3,7 +3,11 @@
 #include "config.h"
 #include "lin_transport.h"
 
-static const uint8_t mockData[2] = {0xDE, 0xAD};
+/* const */
+static uint8_t mockData[2] = {0xDE, 0xAD};
+
+
+
 
 Std_ReturnType Uds_Service_ReadDataByIdentifier(const uint8_t* request, uint8_t reqLen, uint8_t* response, uint8_t* respLen) 
 {
@@ -30,7 +34,7 @@ Std_ReturnType Uds_Service_ReadDataByIdentifier(const uint8_t* request, uint8_t 
             response[3] = mockData[0];
             response[4] = mockData[1];
             *respLen = 5U;
-
+    
             /* Send response via LIN */
             if (Lin_SendData(response, *respLen) != E_OK) 
             {
@@ -49,3 +53,23 @@ Std_ReturnType Uds_Service_ReadDataByIdentifier(const uint8_t* request, uint8_t 
 
     return retVal;
 }
+
+
+
+
+
+
+
+/* To setter/getter for static variables */
+#ifdef TEST
+void set_mock_data(uint8_t a, uint8_t b)
+{
+    mockData[0] = a;
+    mockData[1] = b;
+}
+
+const uint8_t* get_mock_data(void)
+{
+    return mockData;
+}
+#endif

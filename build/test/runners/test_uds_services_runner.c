@@ -24,6 +24,7 @@ extern void test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_
 extern void test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK(void);
 extern void test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK(void);
 extern void test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK(void);
+extern void test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData(void);
 
 
 /*=======Mock Management=====*/
@@ -112,6 +113,8 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
       UNITY_PRINT_EOL();
       UnityPrint("  test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK");
       UNITY_PRINT_EOL();
+      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData");
+      UNITY_PRINT_EOL();
       return 0;
     }
     return parse_status;
@@ -119,12 +122,13 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
 #endif
   UnityBegin("test_uds_services.c");
   run_test(test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK", 47);
-  run_test(test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK", 80);
-  run_test(test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK", 114);
-  run_test(test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK", 158);
-  run_test(test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK", 192);
-  run_test(test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK", 227);
-  run_test(test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK, "test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK", 252);
+  run_test(test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK", 81);
+  run_test(test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK", 115);
+  run_test(test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK", 159);
+  run_test(test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK", 193);
+  run_test(test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK", 228);
+  run_test(test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK, "test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK", 253);
+  run_test(test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData, "test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData", 287);
 
   CMock_Guts_MemFreeFinal();
   return UNITY_END();

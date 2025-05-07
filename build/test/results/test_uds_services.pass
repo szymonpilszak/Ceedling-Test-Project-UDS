@@ -9,35 +9,39 @@
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK
-  :line: 80
+  :line: 81
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK
-  :line: 114
+  :line: 115
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK
-  :line: 158
+  :line: 159
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK
-  :line: 192
+  :line: 193
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK
-  :line: 227
+  :line: 228
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK
-  :line: 252
+  :line: 253
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData
+  :line: 287
   :message: ''
   :unity_test_time: 0
 :failures: []
 :ignores: []
 :counts:
-  :total: 7
-  :passed: 7
+  :total: 8
+  :passed: 8
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.10990659999879426
+:time: 0.1437123000068823
