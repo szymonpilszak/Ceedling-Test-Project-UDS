@@ -72,4 +72,11 @@ const uint8_t* get_mock_data(void)
 {
     return mockData;
 }
+
+
+void uds_ResetStaticData(void) 
+{
+    mockData[0] = 0xDE;
+    mockData[1] = 0xAD;
+}
 #endif

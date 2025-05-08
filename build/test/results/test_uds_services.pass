@@ -5,35 +5,35 @@
   :basename: test_uds_services.c
 :successes:
 - :test: test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK
-  :line: 48
+  :line: 53
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK
-  :line: 78
+  :line: 84
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK
-  :line: 110
+  :line: 115
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_request_length_different_than_3_should_return_E_NOT_OK
-  :line: 153
+  :line: 156
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_did_different_than_0x123_should_return_E_NOT_OK
-  :line: 189
+  :line: 186
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK
-  :line: 225
+  :line: 218
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK
-  :line: 276
+  :line: 264
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData
-  :line: 316
+  :line: 310
   :message: ''
   :unity_test_time: 0
 :failures: []
@@ -44,4 +44,4 @@
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.11668840000129421
+:time: 0.12851359999694978
