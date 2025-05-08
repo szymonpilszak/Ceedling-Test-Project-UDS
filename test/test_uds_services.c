@@ -47,8 +47,8 @@
   **********************************************************************************************************************************/
  /**********************************************************************************************************************************/
  /* Macro to generate tests for Boundary Values Check of MockData[] array with 'edge' input values:
-   *min*, *min+1*, *mid*, *maxl-1*, *max* 
-     0  ,    1   ,  127 ,   254   ,  255  */
+   *min* , *min+1* , *mid* , *max-1*, *max* 
+    0x00 ,  0x01   ,  0x7F ,   0xFE ,  0xFF */
  #define RUN_BOUNDARY_TEST(VAL0, VAL1)           \
  uint8_t request[]  = {0x22, 0x12, 0x34};        \
  uint8_t reqLen      = 3;                        \
@@ -74,7 +74,7 @@
 /* End of macro-function to generate boundary values test cases*/
 
 
-/* Call each Test for Boundary values check using macro RUN_BOUNDARY_TEST */
+/* Call each Test for Boundary Values Check using macro RUN_BOUNDARY_TEST */
 /* Test for MINIMAL input value of mockData */
 void test_ReadDataByIdentifier_Boundary_Min(void)   { RUN_BOUNDARY_TEST(0x00, 0x00); }
 /* Test for MINIMAL+1 VALUE of mockData */
@@ -88,7 +88,7 @@ void test_ReadDataByIdentifier_Boundary_Max(void)   { RUN_BOUNDARY_TEST(0xFF, 0x
 /**********************************************************************************************************************************/
 
 
-
+/* already tested with macro-like function - left for example of easier way to test */
 /******************************************************************************************************************************** */
  /*! 
  *    @brief:        This test checks if tested function corectlLy fill response for minimal input value of mockData[].
