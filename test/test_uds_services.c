@@ -14,13 +14,16 @@
  *              - Mocked functions must be initialized and verified with mock_Lin_Init(),
  *                mock_Lin_Verify(), and mock_Lin_Destroy().
  * 
- *             
+ *              
  *****************************************************************************************************************************************************************************************************************************/
 
 
  #include "unity.h"
  #include "mock_lin_transport.h" // Mock lin_transport
  #include "uds_services.h"
+
+ 
+                   
  
  void setUp(void) {}
  void tearDown(void){
@@ -29,16 +32,18 @@
     back to its default values {0xDE, 0xAD} after each TestCase */
     uds_ResetStaticData();
 
-    
-    mock_lin_transport_Destroy();    // wyczyść mock, by nic nie zostało na następny test
+    /* Clear mock functions data aftear each TestCase*/
+    mock_lin_transport_Destroy();    
  }
   
  
- 
- 
- 
- 
- /* --------------------------------------------------------------------------------------------- TEST for: NULL pointer checks --------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+  /* --------------------------------------------------------------------------------------------- TEST for: NULL pointer checks --------------------------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
@@ -213,8 +218,7 @@
  /******************************************************************************************************************************** */
  /*! 
  *    @brief:        This test checks if tested function returns E_NOT_OK if return from mocked function LinSendData().
- *                   is different than E_OK.
- *                   Parameters are set as follows:                    
+ *                   is different than E_OK.                   
  *    
  *                    
  *
@@ -258,10 +262,9 @@
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
-  /******************************************************************************************************************************** */
+/******************************************************************************************************************************** */
  /*! 
- *    @brief:        This test checks if tested function returns E_OK for expected request, request length, and DiD.
- *                   Parameters are set as follows:     
+ *    @brief:        This test checks if tested function returns E_OK for expected DID, request and request length. 
  *                 
  *
  * 
@@ -309,7 +312,7 @@
  
  
  
- 
+  
  
  
  /* --------------------------------------------------------------------------------------------- TEST for: Boundary values (for each data type) ---------------------------------------------------------------------------- */
@@ -317,8 +320,23 @@
  /* ************************************************************************************************************************************************************************************************************************* */
  
  
-
- void test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData(void)
+/******************************************************************************************************************************** */
+ /*! 
+ *    @brief:        This test checks if tested function corectlLy fill response for minimal input value of mockData[].
+ *
+ *                 
+ * 
+ *   Parameter input values:
+ *     - request  : {0x22, 0x12, 0x34}   (expected value)    [uint8_t range: 0–255]
+ *     - reqLen   : 0x03                 (expected value)    [uint8_t range: 0–255]
+ *     - response : 0x00                 (min value)         [uint8_t range: 0–255]
+ *     - respLen  : 0x00                 (min value)         [uint8_t range: 0–255]
+ *
+ *   Static/global values:
+ *     - mockData[] = {0x00, 0x00}       (min, min)           [uint8_t range: 0–255]
+ *
+  **********************************************************************************************************************************/
+ void test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData(void)
  {
      /* Set Parameter input values */        
      uint8_t request[] = {0x22, 0x12, 0x34};
@@ -358,6 +376,45 @@
      /* Check return of tested function */
      TEST_ASSERT_EQUAL_UINT8(E_OK, ret);
  }
+
+ /******************************************************************************************************************************** */
+ /*! 
+ *    @brief:        Macro to generate boundary values tests with different input values (from minimal to maximal) [unfinished]
+ *                 
+ *
+  **********************************************************************************************************************************/
+ /* Macro to generate boundary values tests with different input values (from minimal to maximal) */
+ #define RUN_BOUNDARY_TEST(VAL0, VAL1)              \
+ uint8_t request[]  = {0x22, 0x12, 0x34};        \
+ uint8_t response[8] = {0};                      \
+ uint8_t respLen     = 0;                        \
+                                                 \
+ set_mock_data((VAL0), (VAL1));                  \
+ const uint8_t* data = get_mock_data();          \
+                                                 \
+ uint8_t expectedResp[5] = {                     \
+     0x62, request[1], request[2], (VAL0), (VAL1)\
+ };                                              \
+                                                 \
+ Lin_SendData_ExpectAndReturn(expectedResp, 5, E_OK); \
+                                                 \
+ Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen); \
+                                                 \
+ TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedResp, response, 5); \
+ TEST_ASSERT_EQUAL_UINT8(5, respLen);            \
+ TEST_ASSERT_EQUAL_UINT8(E_OK, ret);             \
+ TEST_ASSERT_EQUAL_UINT8((VAL0), data[0]);       \
+ TEST_ASSERT_EQUAL_UINT8((VAL1), data[1]);
+
+/* Call each Test for Boundary values using macro RUN_BOUNDARY_TEST */
+void test_ReadDataByIdentifier_Boundary_Min(void)   { RUN_BOUNDARY_TEST(0x00, 0x00); }
+void test_ReadDataByIdentifier_Boundary_One(void)   { RUN_BOUNDARY_TEST(0x01, 0x01); }
+void test_ReadDataByIdentifier_Boundary_Mid(void)   { RUN_BOUNDARY_TEST(0x7F, 0x7F); }
+void test_ReadDataByIdentifier_Boundary_Max1(void)  { RUN_BOUNDARY_TEST(0xFE, 0xFE); }
+void test_ReadDataByIdentifier_Boundary_Max(void)   { RUN_BOUNDARY_TEST(0xFF, 0xFF); }
+
+
+
  /* --------------------------------------------------------------------------------------------- End of TEST for: Boundary values (for each data type)  -------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
@@ -368,3 +425,18 @@
  
  
  /* End of file */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

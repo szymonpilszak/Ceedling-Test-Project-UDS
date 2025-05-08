@@ -5,43 +5,63 @@
   :basename: test_uds_services.c
 :successes:
 - :test: test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK
-  :line: 63
+  :line: 68
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK
-  :line: 94
+  :line: 99
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK
-  :line: 125
+  :line: 130
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_request_length_different_than_3_should_return_E_NOT_OK
-  :line: 167
+  :line: 172
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_did_different_than_0x123_should_return_E_NOT_OK
-  :line: 198
+  :line: 203
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK
-  :line: 231
+  :line: 235
   :message: ''
   :unity_test_time: 0
 - :test: test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK
-  :line: 278
+  :line: 281
   :message: ''
   :unity_test_time: 0
-- :test: test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData
-  :line: 321
+- :test: test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData
+  :line: 339
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_Boundary_Min
+  :line: 410
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_Boundary_One
+  :line: 411
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_Boundary_Mid
+  :line: 412
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_Boundary_Max1
+  :line: 413
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ReadDataByIdentifier_Boundary_Max
+  :line: 414
   :message: ''
   :unity_test_time: 0
 :failures: []
 :ignores: []
 :counts:
-  :total: 8
-  :passed: 8
+  :total: 13
+  :passed: 13
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.16397609999694396
+:time: 0.21304670000245096

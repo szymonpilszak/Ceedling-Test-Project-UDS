@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2025-05-08 13:49:45</td>
+      <td>2025-05-08 15:13:34</td>
     </tr>
   </table>
 </div>
@@ -70,7 +70,7 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l12">Uds_Service_ReadDataByIdentifier (line 12)</a></td><td>called 8 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l12">Uds_Service_ReadDataByIdentifier (line 12)</a></td><td>called 13 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l72">get_mock_data (line 72)</a></td><td>excluded</td><td>100.0%</td></tr>
     <tr><td><a href="#l66">set_mock_data (line 66)</a></td><td>excluded</td><td>100.0%</td></tr>
     <tr><td><a href="#l78">uds_ResetStaticData (line 78)</a></td><td>excluded</td><td>100.0%</td></tr>
@@ -168,7 +168,7 @@
       <td class="lineno"><a id="l12" href="#l12">12</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">8</td>
+      <td class="linecount coveredLine">13</td>
       <td class="src coveredLine"><span class="n">Std_ReturnType</span><span class="w"> </span><span class="nf">Uds_Service_ReadDataByIdentifier</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">reqLen</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">respLen</span><span class="p">)</span><span class="w"> </span></td>
     </tr>
     <tr class="source-line">
@@ -182,7 +182,7 @@
       <td class="lineno"><a id="l14" href="#l14">14</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">8</td>
+      <td class="linecount coveredLine">13</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">Std_ReturnType</span><span class="w"> </span><span class="n">retVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E_NOT_OK</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -198,16 +198,16 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">6/6</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 7 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 12 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 1 times.</div>
-            <div class="takenBranch">&check; Branch 2 taken 6 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 11 times.</div>
             <div class="takenBranch">&check; Branch 3 taken 1 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 1 times.</div>
-            <div class="takenBranch">&check; Branch 5 taken 5 times.</div>
+            <div class="takenBranch">&check; Branch 5 taken 10 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">8</td>
+      <td class="linecount coveredLine">13</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">request</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">respLen</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">))</span></td>
     </tr>
     <tr class="source-line">
@@ -245,11 +245,11 @@
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 0 taken 1 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 4 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 9 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">5</td>
+      <td class="linecount coveredLine">10</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reqLen</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">3U</span><span class="p">)</span><span class="w"> </span></td>
     </tr>
     <tr class="source-line">
@@ -291,7 +291,7 @@
       <td class="lineno"><a id="l27" href="#l27">27</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">4</td>
+      <td class="linecount coveredLine">9</td>
       <td class="src coveredLine"><span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">did</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">uint16_t</span><span class="p">)</span><span class="n">request</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8U</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="kt">uint16_t</span><span class="p">)</span><span class="n">request</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span></td>
     </tr>
     <tr class="source-line">
@@ -307,12 +307,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 3 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 8 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 1 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">4</td>
+      <td class="linecount coveredLine">9</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">did</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">0x1234U</span><span class="p">)</span><span class="w"> </span></td>
     </tr>
     <tr class="source-line">
@@ -326,42 +326,42 @@
       <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3</td>
+      <td class="linecount coveredLine">8</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x62U</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l32" href="#l32">32</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3</td>
+      <td class="linecount coveredLine">8</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">response</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l33" href="#l33">33</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3</td>
+      <td class="linecount coveredLine">8</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">response</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l34" href="#l34">34</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3</td>
+      <td class="linecount coveredLine">8</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">response</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mockData</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l35" href="#l35">35</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3</td>
+      <td class="linecount coveredLine">8</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">response</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mockData</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l36" href="#l36">36</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3</td>
+      <td class="linecount coveredLine">8</td>
       <td class="src coveredLine"><span class="w">            </span><span class="o">*</span><span class="n">respLen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5U</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -385,11 +385,11 @@
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 1 taken 1 times.</div>
-            <div class="takenBranch">&check; Branch 2 taken 2 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 7 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">3</td>
+      <td class="linecount coveredLine">8</td>
       <td class="src coveredLine"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Lin_SendData</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">respLen</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">E_OK</span><span class="p">)</span><span class="w"> </span></td>
     </tr>
     <tr class="source-line">
@@ -431,7 +431,7 @@
       <td class="lineno"><a id="l45" href="#l45">45</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">2</td>
+      <td class="linecount coveredLine">7</td>
       <td class="src coveredLine"><span class="w">                </span><span class="n">retVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E_OK</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -494,7 +494,7 @@
       <td class="lineno"><a id="l54" href="#l54">54</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">5</td>
+      <td class="linecount coveredLine">10</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">retVal</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -558,7 +558,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cm">/* To setter/getter for static variables */</span></td>
+      <td class="src "><span class="cm">/* Function SET/GET/RESET for static variables control */</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l64" href="#l64">64</a></td>

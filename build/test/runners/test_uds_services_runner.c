@@ -24,7 +24,12 @@ extern void test_Uds_Service_ReadDataByIdentifier_request_length_different_than_
 extern void test_Uds_Service_ReadDataByIdentifier_did_different_than_0x123_should_return_E_NOT_OK(void);
 extern void test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK(void);
 extern void test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK(void);
-extern void test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData(void);
+extern void test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData(void);
+extern void test_ReadDataByIdentifier_Boundary_Min(void);
+extern void test_ReadDataByIdentifier_Boundary_One(void);
+extern void test_ReadDataByIdentifier_Boundary_Mid(void);
+extern void test_ReadDataByIdentifier_Boundary_Max1(void);
+extern void test_ReadDataByIdentifier_Boundary_Max(void);
 
 
 /*=======Mock Management=====*/
@@ -113,7 +118,17 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
       UNITY_PRINT_EOL();
       UnityPrint("  test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK");
       UNITY_PRINT_EOL();
-      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData");
+      UnityPrint("  test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData");
+      UNITY_PRINT_EOL();
+      UnityPrint("  test_ReadDataByIdentifier_Boundary_Min");
+      UNITY_PRINT_EOL();
+      UnityPrint("  test_ReadDataByIdentifier_Boundary_One");
+      UNITY_PRINT_EOL();
+      UnityPrint("  test_ReadDataByIdentifier_Boundary_Mid");
+      UNITY_PRINT_EOL();
+      UnityPrint("  test_ReadDataByIdentifier_Boundary_Max1");
+      UNITY_PRINT_EOL();
+      UnityPrint("  test_ReadDataByIdentifier_Boundary_Max");
       UNITY_PRINT_EOL();
       return 0;
     }
@@ -121,14 +136,19 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
   }
 #endif
   UnityBegin("test_uds_services.c");
-  run_test(test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK", 63);
-  run_test(test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK", 94);
-  run_test(test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK", 125);
-  run_test(test_Uds_Service_ReadDataByIdentifier_request_length_different_than_3_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_request_length_different_than_3_should_return_E_NOT_OK", 167);
-  run_test(test_Uds_Service_ReadDataByIdentifier_did_different_than_0x123_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_did_different_than_0x123_should_return_E_NOT_OK", 198);
-  run_test(test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK", 231);
-  run_test(test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK, "test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK", 278);
-  run_test(test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData, "test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData", 321);
+  run_test(test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK", 68);
+  run_test(test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK", 99);
+  run_test(test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK", 130);
+  run_test(test_Uds_Service_ReadDataByIdentifier_request_length_different_than_3_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_request_length_different_than_3_should_return_E_NOT_OK", 172);
+  run_test(test_Uds_Service_ReadDataByIdentifier_did_different_than_0x123_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_did_different_than_0x123_should_return_E_NOT_OK", 203);
+  run_test(test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK", 235);
+  run_test(test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK, "test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK", 281);
+  run_test(test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData, "test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData", 339);
+  run_test(test_ReadDataByIdentifier_Boundary_Min, "test_ReadDataByIdentifier_Boundary_Min", 410);
+  run_test(test_ReadDataByIdentifier_Boundary_One, "test_ReadDataByIdentifier_Boundary_One", 411);
+  run_test(test_ReadDataByIdentifier_Boundary_Mid, "test_ReadDataByIdentifier_Boundary_Mid", 412);
+  run_test(test_ReadDataByIdentifier_Boundary_Max1, "test_ReadDataByIdentifier_Boundary_Max1", 413);
+  run_test(test_ReadDataByIdentifier_Boundary_Max, "test_ReadDataByIdentifier_Boundary_Max", 414);
 
   CMock_Guts_MemFreeFinal();
   return UNITY_END();
