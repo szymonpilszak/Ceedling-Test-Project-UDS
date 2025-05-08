@@ -17,35 +17,37 @@
  
  void setUp(void) {}
  void tearDown(void) {}
+  
  
- /* ********************************************************************************************* TEST for: NULL pointer checks ********************************************************************************************* */
+ 
+ 
+ 
+ 
+ /* --------------------------------------------------------------------------------------------- TEST for: NULL pointer checks --------------------------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
  /******************************************************************************************************************************** */
  /*! 
-     @brief:        This test checks if function returns E_NOT_OK for invalid pointer to request (NULL).
- 
-     @param[inout]  request :   Pointer to service request 
-                    Set to  :   NULL (invalid)    
-                    Range   :   uint8_t (0-255)     
- 
-     @param[in]     reqLen  :   Request length
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)          
- 
-     @param[inout]  response:   Pointer to service response
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)       
-                    
-     @param[inout]  respLen :   Pointer to response length
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)    
- 
- 
+ *    @brief:        This test checks if tested function returns E_NOT_OK for invalid pointer to request (NULL).
+ *                   Parameters are set as follows:
+ *
+ *                   
+ *   
+ *
+ *   Parameter values:
+ *     - request  : {NULL}   (invalid value)     [uint8_t range: 0–255]
+ *     - reqLen   : 0x00     (min value)         [uint8_t range: 0–255]
+ *     - response : 0x00     (invalid pointer)   [uint8_t range: 0–255]
+ *     - respLen  : 0x00     (min value)         [uint8_t range: 0–255]
+ *
+ *   Static/global values:
+ *     - mockData[] = {0xDE, 0xAD}               [uint8_t range: 0–255]
+ *
   **********************************************************************************************************************************/
  void test_Uds_Service_ReadDataByIdentifier_request_is_null_should_return_E_NOT_OK(void)
  {
+        /* Set parameter values */    
      uint8_t* request = NULL;    /* Invalid request */
      uint8_t reqLen = 0;
      uint8_t response[8] = {0x00};
@@ -59,27 +61,23 @@
  
  /******************************************************************************************************************************** */
  /*! 
-     @brief:        This test checks if function returns E_NOT_OK for invalid pointer to response (NULL).
- 
-     @param[inout]  request :   Pointer to service request 
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)     
- 
-     @param[in]     reqLen  :   Request length
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)          
- 
-     @param[inout]  response:   Pointer to service response
-                    Set to  :   NULL (invalid)    
-                    Range   :   uint8_t (0-255)       
-                    
-     @param[inout]  respLen :   Pointer to response length
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)        
- 
+ *    @brief:        This test checks if tested function returns E_NOT_OK for invalid pointer to response (NULL).
+ *                   
+ *   
+ *
+ *   Parameter values:
+ *     - request  : {0x00}   (min value)         [uint8_t range: 0–255]
+ *     - reqLen   : 0x00     (min value)         [uint8_t range: 0–255]
+ *     - response : NULL     (invalid pointer)   [uint8_t range: 0–255]
+ *     - respLen  : 0x00     (min value)         [uint8_t range: 0–255]
+ *
+ *   Static/global values:
+ *     - mockData[] = {0xDE, 0xAD}               [uint8_t range: 0–255]
+ *
   **********************************************************************************************************************************/
  void test_Uds_Service_ReadDataByIdentifier_response_is_null_should_return_E_NOT_OK(void)
  {
+        /* Set parameter values */    
      uint8_t request[] = {0x00, 0x00, 0x00};
      uint8_t reqLen = 0;
      uint8_t* response = NULL;   /* Invalid response  */
@@ -93,27 +91,25 @@
  
  /******************************************************************************************************************************** */
  /*! 
-     @brief:              This test checks if function returns E_NOT_OK for invalid pointer to respLen(NULL)
- 
-     @param[inout]  request :   Pointer to service request 
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)     
- 
-     @param[in]     reqLen  :   Request length
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)          
- 
-     @param[inout]  response:   Pointer to service response
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)       
-                    
-     @param[inout]  respLen :   Pointer to response length
-                    Set to  :   NULL (invalid)    
-                    Range   :   uint8_t (0-255)     
- 
+ *    @brief:        This test checks if tested function returns E_NOT_OK for invalid pointer to respLen (NULL).
+ *                   Parameters are set as follows:     
+ *
+ *                   
+ *   
+ *
+ *   Parameter values:
+ *     - request  : {0x00}   (min value)         [uint8_t range: 0–255]
+ *     - reqLen   : 0x00     (min value)         [uint8_t range: 0–255]
+ *     - response : 0x00     (invalid pointer)   [uint8_t range: 0–255] 
+ *     - respLen  : NULL     (min value)         [uint8_t range: 0–255]
+ *
+ *   Static/global values:
+ *     - mockData[] = {0xDE, 0xAD}               [uint8_t range: 0–255]
+ *
   **********************************************************************************************************************************/
  void test_Uds_Service_ReadDataByIdentifier_respLen_is_null_should_return_E_NOT_OK(void)
  {
+        /* Set parameter values */    
      uint8_t request[] = {0x00, 0x00, 0x00};
      uint8_t reqLen = 0;
      uint8_t response[8] = {0x00};
@@ -123,41 +119,40 @@
  
      TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
  }
- /* ********************************************************************************************* End of TEST for: NULL pointer checks ************************************************************************************** */
+ /* --------------------------------------------------------------------------------------------- End of TEST for: NULL pointer checks -------------------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  
  
  
  
  
- /* ********************************************************************************************* TEST for: invalid request/did/LinSendData() ******************************************************************************* */
+ 
+ /* --------------------------------------------------------------------------------------------- TEST for: invalid request/did/LinSendData() ------------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
  /******************************************************************************************************************************** */
  /*! 
-     @brief:        This test checks if function returns E_NOT_OK for invalid request length
+     @brief:        This test checks if tested function returns E_NOT_OK for request length different than 3.
+                    Parameters are set as follows:     
  
-     @param[inout]  request :   Pointer to service request 
-                    Set to  :   {0x22, 0x12}    
-                    Range   :   uint8_t (0-255)     
- 
-     @param[in]     reqLen  :   Request length
-                    Set to  :   2   
-                    Range   :   uint8_t (0-255)          
- 
-     @param[inout]  response:   Pointer to service response
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)       
-                    
-     @param[inout]  respLen :   Pointer to response length
-                    Set to  :   *min* (0)    
-                    Range   :   uint8_t (0-255)        
-     
- 
+ *
+ *                   
+ *   
+ *
+ *   Parameter values:
+ *     - request  : {0x22, 0x12}   (min value)         [uint8_t range: 0–255]
+ *     - reqLen   : 0x02                               [uint8_t range: 0–255]
+ *     - response : 0x00           (min value)         [uint8_t range: 0–255]
+ *     - respLen  : NULL           (min value)         [uint8_t range: 0–255]
+ *
+ *   Static/global values:
+ *     - mockData[] = {0xDE, 0xAD}               [uint8_t range: 0–255]
+ *
   **********************************************************************************************************************************/
- void test_Uds_Service_ReadDataByIdentifier_invalid_request_length_should_E_NOT_OK(void)
+ void test_Uds_Service_ReadDataByIdentifier_request_length_different_than_3_should_return_E_NOT_OK(void)
  {
+        /* Set parameter values */    
      uint8_t request[] = {0x22, 0x12};   
      uint8_t reqLen = 2;                 /* Invalid request length (EXPECTED: 3) */
      uint8_t response[8] = {0x00};
@@ -170,7 +165,8 @@
  
  /******************************************************************************************************************************** */
  /*! 
-     @brief:        This test checks if function returns E_NOT_OK for invalid DID.
+     @brief:        This test checks if tested function returns E_NOT_OK for invalid DID.
+                    Parameters are set as follows:     
  
      @param[inout]  request :   Pointer to service request 
                     Set to  :   {0x22, 0x12}    
@@ -190,8 +186,9 @@
      
  
   **********************************************************************************************************************************/
- void test_Uds_Service_ReadDataByIdentifier_invalid_did_should_return_E_NOT_OK(void)
+ void test_Uds_Service_ReadDataByIdentifier_did_different_than_0x123_should_return_E_NOT_OK(void)
  {
+        /* Set parameter values */    
      uint8_t request[] = {0x22, 0xAB, 0xCD};
      uint8_t reqLen = 3;
      uint8_t response[8] = {0};
@@ -201,11 +198,11 @@
      TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
  }
  
- 
  /******************************************************************************************************************************** */
  /*! 
-     @brief:        This test checks if function returns E_NOT_OK if return from mocked function LinSendData()
+     @brief:        This test checks if tested function returns E_NOT_OK if return from mocked function LinSendData().
                     is different than E_OK.
+                    Parameters are set as follows:                    
  
      @param[inout]  request :   Pointer to service request 
                     Set to  :   {0x22, 0x12, 0x34}    
@@ -225,8 +222,9 @@
      
  
   **********************************************************************************************************************************/
- void test_Uds_Service_ReadDataByIdentifier_LinSendData_fails_should_return_E_NOT_OK(void)
+ void test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK(void) 
  {
+        /* Set parameter values */
      uint8_t request[] = {0x22, 0x12, 0x34};
      uint8_t reqLen = 3;
      uint8_t response[8] = {0};
@@ -238,30 +236,60 @@
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
  
      TEST_ASSERT_EQUAL_UINT8(E_NOT_OK, ret);
- }
- /* ********************************************************************************************* End of TEST for: invalid request/did/LinSendData ************************************************************************** */
+ }  
+ /* --------------------------------------------------------------------------------------------- End of TEST for: invalid request/did/LinSendData -------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
  
  
  
- /* ********************************************************************************************* TEST for: happy path ****************************************************************************************************** */
+ 
+
+ /* --------------------------------------------------------------------------------------------- TEST for: happy path ------------------------------------------------------------------------------------------------------ */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
+  /******************************************************************************************************************************** */
+ /*! 
+     @brief:        This test checks if tested function returns E_OK for expected request, request length, and DiD.
+                    Parameters are set as follows:     
+ 
+     @param[inout]  request :   Pointer to service request 
+                    Set to  :   {0x22, 0x12, 0x34}    
+                    Range   :   uint8_t (0-255)     
+ 
+     @param[in]     reqLen  :   Request length
+                    Set to  :   3 (as expected)   
+                    Range   :   uint8_t (0-255)          
+ 
+     @param[inout]  response:   Pointer to service response
+                    Set to  :   *min* (0)    
+                    Range   :   uint8_t (0-255)       
+                    
+     @param[inout]  respLen :   Pointer to response length
+                    Set to  :   *min* (0)    
+                    Range   :   uint8_t (0-255)        
+     
+ 
+  **********************************************************************************************************************************/
  void test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK(void)
  {
+        /* Set parameter values */
      uint8_t request[] = {0x22, 0x12, 0x34};
+     uint8_t reqLen = 3;
      uint8_t response[8] = {0};
      uint8_t respLen = 0;
+
  
-     uint8_t mockData[1] = {0xDE};
  
+        /* Set return and parameter values of mock function Lin_SendData() */
      Lin_SendData_ExpectAndReturn(response, 5, E_OK); // Positive response from Lin_SendData
  
-     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
+     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
  
+
+        /* Check output values of parameter "response" */ 
      TEST_ASSERT_EQUAL_UINT8(E_OK, ret);
      TEST_ASSERT_EQUAL_UINT8(5, respLen);
      TEST_ASSERT_EQUAL_UINT8(0x62, response[0]);
@@ -270,7 +298,7 @@
      TEST_ASSERT_EQUAL_UINT8(0xDE, response[3]);
      TEST_ASSERT_EQUAL_UINT8(0xAD, response[4]);
  }
- /* ********************************************************************************************* End of TEST for: happy path() ********************************************************************************************* */
+ /* --------------------------------------------------------------------------------------------- End of TEST for: happy path() --------------------------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
@@ -278,7 +306,8 @@
  
  
  
- /* ********************************************************************************************* TEST for: Boundary values (for each data type) **************************************************************************** */
+ 
+ /* --------------------------------------------------------------------------------------------- TEST for: Boundary values (for each data type) ---------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
@@ -286,6 +315,7 @@
 
  void test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData(void)
  {
+        /* Set parameter values */        
      uint8_t request[] = {0x22, 0x12, 0x34};
      uint8_t response[8] = {0};
      uint8_t respLen = 0;
@@ -297,14 +327,17 @@
          /* Function to get static variable mockData[] */
      const uint8_t* data = get_mock_data();
  
-        /* Check minimal values of mockData[] */
-     TEST_ASSERT_EQUAL_UINT8(0x00, data[0]);
-     TEST_ASSERT_EQUAL_UINT8(0x00, data[1]);
- 
+
+        /* Set return and parameter values of mock function Lin_SendData() */        
      Lin_SendData_ExpectAndReturn(response, 5, E_OK); // Positive response from Lin_SendData
  
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
+
+            /* Check output values of static variable "mockData[]" */
+    TEST_ASSERT_EQUAL_UINT8(0x00, data[0]);
+    TEST_ASSERT_EQUAL_UINT8(0x00, data[1]);     
  
+             /* Check output values of parameter "response" */    
      TEST_ASSERT_EQUAL_UINT8(E_OK, ret);
      TEST_ASSERT_EQUAL_UINT8(5, respLen);
      TEST_ASSERT_EQUAL_UINT8(0x62, response[0]);
@@ -313,13 +346,13 @@
      TEST_ASSERT_EQUAL_UINT8(0x00, response[3]);
      TEST_ASSERT_EQUAL_UINT8(0x00, response[4]);
  }
- /* ********************************************************************************************* End of TEST for: Boundary values (for each data type)  ********************************************************************************************* */
+ /* --------------------------------------------------------------------------------------------- End of TEST for: Boundary values (for each data type)  -------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
  
  
- /* End of TEST for: Boundary values  */
+
  
  
  /* End of file */

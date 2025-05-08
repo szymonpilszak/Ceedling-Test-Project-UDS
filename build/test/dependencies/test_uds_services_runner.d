@@ -1,4 +1,4 @@
-build/gcov/out/test_uds_services/test_uds_services_runner.o: \
+build/test/out/test_uds_services/test_uds_services_runner.o: \
  build/test/runners/test_uds_services_runner.c \
  build/vendor/unity/src/unity.h build/vendor/unity/src/unity_internals.h \
  build/vendor/cmock/src/cmock.h build/vendor/cmock/src/cmock_internals.h \
