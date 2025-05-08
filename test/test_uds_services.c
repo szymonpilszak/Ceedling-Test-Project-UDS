@@ -1,13 +1,20 @@
 /****************************************************************************************************************************************************************************************************************************/
 /*! 
-    @file   test_uds_services.c
-
-    @brief  This file contains unit tests of :
-            source file: uds_service.c
-
-            Including functions:
-            - Uds_Service_ReadDataByIdentifier()
-            - *more functions to add in future*
+ *   @file   test_uds_services.c
+ *
+ *   @brief  This file implements Unity/CMock-based unit tests for the Uds_Service module source file:
+ *           -uds_service.c
+ *
+ *           Currently covering functions:
+ *           - Uds_Service_ReadDataByIdentifier()
+ *           - *additional UDS service functions to be added here*
+ *
+ * @details  Static internal states (e.g., mockData[]) is reset to its initial state 
+ *          ( {0xDE, 0xAD} ) after each test via uds_ResetStaticData() in tearDown().
+ *              - Mocked functions must be initialized and verified with mock_Lin_Init(),
+ *                mock_Lin_Verify(), and mock_Lin_Destroy().
+ * 
+ *             
  *****************************************************************************************************************************************************************************************************************************/
 
 
@@ -18,9 +25,12 @@
  void setUp(void) {}
  void tearDown(void){
  
-    /* Call func to restore internal static state (mockData) to
-     its default values {0xDE, 0xAD} after each TestCase */
+    /* Call func to restore internal state of static variable (mockData[]) 
+    back to its default values {0xDE, 0xAD} after each TestCase */
     uds_ResetStaticData();
+
+    
+    mock_lin_transport_Destroy();    // wyczyść mock, by nic nie zostało na następny test
  }
   
  
@@ -58,7 +68,7 @@
      uint8_t response[8] = {0x00};
      uint8_t respLen = 0x00;
  
- 
+    /* Store return value of tested function */
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
  
      /* Check return of tested function */
@@ -89,7 +99,7 @@
      uint8_t* response = NULL;   /* Invalid pointer to response  */
      uint8_t respLen = 0x00;
  
- 
+    /* Store return value of tested function */
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
  
      /* Check return of tested function */
@@ -120,6 +130,7 @@
      uint8_t response[8] = {0x00};
      uint8_t* respLen = NULL;     /* Invalid pointer to response length */
  
+    /* Store return value of tested function */
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, respLen);
  
      /* Check return of tested function */
@@ -155,12 +166,13 @@
   **********************************************************************************************************************************/
  void test_Uds_Service_ReadDataByIdentifier_request_length_different_than_3_should_return_E_NOT_OK(void)
  {
-        /* Set Parameter input values */    
+     /* Set Parameter input values */    
      uint8_t request[] = {0x22, 0x12};   
      uint8_t reqLen = 2;                 /* Invalid request length (EXPECTED: 3) */
      uint8_t response[8] = {0x00};
      uint8_t respLen = 0x00;
  
+     /* Store return value of tested function */
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
  
      /* Check return of tested function */
@@ -185,12 +197,13 @@
   **********************************************************************************************************************************/
  void test_Uds_Service_ReadDataByIdentifier_did_different_than_0x123_should_return_E_NOT_OK(void)
  {
-        /* Set Parameter input values */    
+     /* Set Parameter input values */    
      uint8_t request[] = {0x22, 0xAB, 0xCD};
      uint8_t reqLen = 3;
      uint8_t response[8] = {0};
      uint8_t respLen = 0;
 
+     /* Store return value of tested function */
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
  
      /* Check return of tested function */
@@ -217,15 +230,16 @@
   **********************************************************************************************************************************/
  void test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK(void) 
  {
-        /* Set Parameter input values */
+     /* Set Parameter input values */
      uint8_t request[] = {0x22, 0x12, 0x34};
      uint8_t reqLen = 3;
      uint8_t response[8] = {0};
      uint8_t respLen = 0;
  
- 
+     /* Check parameter input values and set return value of mock function Lin_SendData() */
      Lin_SendData_ExpectAndReturn(response, 5, E_NOT_OK); // Negative response from Lin_SendData()
  
+     /* Store return value of tested function */
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
  
      /* Check return of tested function */
@@ -263,34 +277,31 @@
   **********************************************************************************************************************************/
  void test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK(void)
  {
-        /* Set Parameter input values */
+     /* Set Parameter input values */
      uint8_t request[] = {0x22, 0x12, 0x34};
      uint8_t reqLen = 3;
      uint8_t response[8] = {0};
      uint8_t respLen = 0;
-
  
- 
-    /* Set return and Parameter input values of mock function Lin_SendData() */
+     /* Check parameter input values and set return value of mock function Lin_SendData() */  
      Lin_SendData_ExpectAndReturn(response, 5, E_OK); // Positive response from Lin_SendData
  
+     /* Store return value of tested function */
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, reqLen, response, &respLen);
  
-
-
 
      /* Check output value of parameter "respLen" */
      TEST_ASSERT_EQUAL_UINT8(5, respLen);
 
-    /* Check output values of parameter "response" */ 
+     /* Check output values of parameter "response" */ 
      TEST_ASSERT_EQUAL_UINT8(0x62, response[0]);
      TEST_ASSERT_EQUAL_UINT8(0x12, response[1]);
      TEST_ASSERT_EQUAL_UINT8(0x34, response[2]);
      TEST_ASSERT_EQUAL_UINT8(0xDE, response[3]);
      TEST_ASSERT_EQUAL_UINT8(0xAD, response[4]);
 
-    /* Check return of tested function */
-    TEST_ASSERT_EQUAL_UINT8(E_OK, ret);
+     /* Check return of tested function */
+     TEST_ASSERT_EQUAL_UINT8(E_OK, ret);
  }
  /* --------------------------------------------------------------------------------------------- End of TEST for: happy path() --------------------------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
@@ -309,36 +320,43 @@
 
  void test_Uds_Service_ReadDataByIdentifier_check_of_minimal_boundary_values_of_mockData(void)
  {
-        /* Set Parameter input values */        
+     /* Set Parameter input values */        
      uint8_t request[] = {0x22, 0x12, 0x34};
      uint8_t response[8] = {0};
      uint8_t respLen = 0;
  
  
-         /* Function to set static variable mockData[] */
+     /* Function to set static variable mockData[] */
      set_mock_data(0x00, 0x00);
  
-         /* Function to get static variable mockData[] */
+     /* Function to get static variable mockData[] */
      const uint8_t* data = get_mock_data();
  
 
-        /* Set return and Parameter input values of mock function Lin_SendData() */        
+     /* Check parameter input values and set return value of mock function Lin_SendData() */        
      Lin_SendData_ExpectAndReturn(response, 5, E_OK); // Positive response from Lin_SendData
  
+    /* Store return value of tested function */ 
      Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
 
-            /* Check output values of static variable "mockData[]" */
-    TEST_ASSERT_EQUAL_UINT8(0x00, data[0]);
-    TEST_ASSERT_EQUAL_UINT8(0x00, data[1]);     
+
+     /* Check output values of static variable "mockData[]" */
+     TEST_ASSERT_EQUAL_UINT8(0x00, data[0]);
+     TEST_ASSERT_EQUAL_UINT8(0x00, data[1]);     
  
-             /* Check output values of parameter "response" */    
-     TEST_ASSERT_EQUAL_UINT8(E_OK, ret);
+    
+     /* Check output value of parameter "respLen" */   
      TEST_ASSERT_EQUAL_UINT8(5, respLen);
+    
+     /* Check output values of parameter "response" */        
      TEST_ASSERT_EQUAL_UINT8(0x62, response[0]);
      TEST_ASSERT_EQUAL_UINT8(0x12, response[1]);
      TEST_ASSERT_EQUAL_UINT8(0x34, response[2]);
      TEST_ASSERT_EQUAL_UINT8(0x00, response[3]);
      TEST_ASSERT_EQUAL_UINT8(0x00, response[4]);
+
+     /* Check return of tested function */
+     TEST_ASSERT_EQUAL_UINT8(E_OK, ret);
  }
  /* --------------------------------------------------------------------------------------------- End of TEST for: Boundary values (for each data type)  -------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */

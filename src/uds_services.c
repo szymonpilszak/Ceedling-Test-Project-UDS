@@ -60,7 +60,7 @@ Std_ReturnType Uds_Service_ReadDataByIdentifier(const uint8_t* request, uint8_t 
 
 
 
-/* To setter/getter for static variables */
+/* Function SET/GET/RESET for static variables control */
 #ifdef TEST
 // GCOVR_EXCL_START 
 void set_mock_data(uint8_t a, uint8_t b)
