@@ -36,14 +36,124 @@
     mock_lin_transport_Destroy();    
  }
   
+ /* --------------------------------------------------------------------------------------------- TEST for: Boundary values (for each data type) ---------------------------------------------------------------------------- */
+ /* ************************************************************************************************************************************************************************************************************************* */
+ /* ************************************************************************************************************************************************************************************************************************* */
+ /******************************************************************************************************************************** */
+ /*! 
+ *    @brief:        Macro to generate boundary values tests with different input values (from minimal to maximal) [unfinished]
+ *                 
+ *
+  **********************************************************************************************************************************/
+ /**********************************************************************************************************************************/
+ /* Macro to generate tests for Boundary Values Check of MockData[] array with 'edge' input values:
+   *min*, *min+1*, *mid*, *maxl-1*, *max* 
+     0  ,    1   ,  127 ,   254   ,  255  */
+ #define RUN_BOUNDARY_TEST(VAL0, VAL1)           \
+ uint8_t request[]  = {0x22, 0x12, 0x34};        \
+ uint8_t reqLen      = 3;                        \
+ uint8_t response[8] = {0};                      \
+ uint8_t respLen     = 0;                        \
+                                                 \
+ set_mock_data((VAL0), (VAL1));                  \
+ const uint8_t* data = get_mock_data();          \
+                                                 \
+ uint8_t expectedResp[5] = {                     \
+     0x62, request[1], request[2], (VAL0), (VAL1)\
+ };                                              \
+                                                 \
+ Lin_SendData_ExpectAndReturn(expectedResp, 5, E_OK); \
+                                                 \
+ Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen); \
+                                                 \
+ TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedResp, response, 5); \
+ TEST_ASSERT_EQUAL_UINT8(5, respLen);            \
+ TEST_ASSERT_EQUAL_UINT8(E_OK, ret);             \
+ TEST_ASSERT_EQUAL_UINT8((VAL0), data[0]);       \
+ TEST_ASSERT_EQUAL_UINT8((VAL1), data[1]);
+/* End of macro-function to generate boundary values test cases*/
+
+
+/* Call each Test for Boundary values check using macro RUN_BOUNDARY_TEST */
+/* Test for MINIMAL input value of mockData */
+void test_ReadDataByIdentifier_Boundary_Min(void)   { RUN_BOUNDARY_TEST(0x00, 0x00); }
+/* Test for MINIMAL+1 VALUE of mockData */
+void test_ReadDataByIdentifier_Boundary_One(void)   { RUN_BOUNDARY_TEST(0x01, 0x01); }
+/* Test for MID VALUE of mockData */
+void test_ReadDataByIdentifier_Boundary_Mid(void)   { RUN_BOUNDARY_TEST(0x7F, 0x7F); }
+/* Test for MAXIMAL-1 VALUE of mockData */
+void test_ReadDataByIdentifier_Boundary_Max1(void)  { RUN_BOUNDARY_TEST(0xFE, 0xFE); }
+/* Test for MAXIMAL VALUE of mockData */
+void test_ReadDataByIdentifier_Boundary_Max(void)   { RUN_BOUNDARY_TEST(0xFF, 0xFF); }
+/**********************************************************************************************************************************/
+
+
+
+/******************************************************************************************************************************** */
+ /*! 
+ *    @brief:        This test checks if tested function corectlLy fill response for minimal input value of mockData[].
+ *
+ *                 
+ * 
+ *   Parameter input values:
+ *     - request  : {0x22, 0x12, 0x34}   (expected value)    [uint8_t range: 0–255]
+ *     - reqLen   : 0x03                 (expected value)    [uint8_t range: 0–255]
+ *     - response : 0x00                 (min value)         [uint8_t range: 0–255]
+ *     - respLen  : 0x00                 (min value)         [uint8_t range: 0–255]
+ *
+ *   Static/global values:
+ *     - mockData[] = {0x00, 0x00}       (min, min)           [uint8_t range: 0–255]
+ *
+  **********************************************************************************************************************************/
+ void test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData(void)
+ {
+     /* Set Parameter input values */        
+     uint8_t request[] = {0x22, 0x12, 0x34};
+     uint8_t response[8] = {0};
+     uint8_t respLen = 0;
+ 
+ 
+     /* Function to set static variable mockData[] */
+     set_mock_data(0x00, 0x00);
+ 
+     /* Function to get static variable mockData[] */
+     const uint8_t* data = get_mock_data();
  
 
+     /* Check parameter input values and set return value of mock function Lin_SendData() */        
+     Lin_SendData_ExpectAndReturn(response, 5, E_OK); // Positive response from Lin_SendData
+ 
+    /* Store return value of tested function */ 
+     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
+
+
+     /* Check output values of static variable "mockData[]" */
+     TEST_ASSERT_EQUAL_UINT8(0x00, data[0]);
+     TEST_ASSERT_EQUAL_UINT8(0x00, data[1]);     
+ 
+    
+     /* Check output value of parameter "respLen" */   
+     TEST_ASSERT_EQUAL_UINT8(5, respLen);
+    
+     /* Check output values of parameter "response" */        
+     TEST_ASSERT_EQUAL_UINT8(0x62, response[0]);
+     TEST_ASSERT_EQUAL_UINT8(0x12, response[1]);
+     TEST_ASSERT_EQUAL_UINT8(0x34, response[2]);
+     TEST_ASSERT_EQUAL_UINT8(0x00, response[3]);
+     TEST_ASSERT_EQUAL_UINT8(0x00, response[4]);
+
+     /* Check return of tested function */
+     TEST_ASSERT_EQUAL_UINT8(E_OK, ret);
+ }
+ /* --------------------------------------------------------------------------------------------- End of TEST for: Boundary values (for each data type)  -------------------------------------------------------------------- */
+ /* ************************************************************************************************************************************************************************************************************************* */
+ /* ************************************************************************************************************************************************************************************************************************* */
 
 
 
 
 
-  /* --------------------------------------------------------------------------------------------- TEST for: NULL pointer checks --------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- TEST for: NULL pointer checks --------------------------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
  
@@ -143,7 +253,6 @@
  }
  /* --------------------------------------------------------------------------------------------- End of TEST for: NULL pointer checks -------------------------------------------------------------------------------------- */
  /* ************************************************************************************************************************************************************************************************************************* */
- 
  
  
  
@@ -257,7 +366,6 @@
  
  
  
-
  /* --------------------------------------------------------------------------------------------- TEST for: happy path ------------------------------------------------------------------------------------------------------ */
  /* ************************************************************************************************************************************************************************************************************************* */
  /* ************************************************************************************************************************************************************************************************************************* */
@@ -315,117 +423,7 @@
   
  
  
- /* --------------------------------------------------------------------------------------------- TEST for: Boundary values (for each data type) ---------------------------------------------------------------------------- */
- /* ************************************************************************************************************************************************************************************************************************* */
- /* ************************************************************************************************************************************************************************************************************************* */
  
- 
-/******************************************************************************************************************************** */
- /*! 
- *    @brief:        This test checks if tested function corectlLy fill response for minimal input value of mockData[].
- *
- *                 
- * 
- *   Parameter input values:
- *     - request  : {0x22, 0x12, 0x34}   (expected value)    [uint8_t range: 0–255]
- *     - reqLen   : 0x03                 (expected value)    [uint8_t range: 0–255]
- *     - response : 0x00                 (min value)         [uint8_t range: 0–255]
- *     - respLen  : 0x00                 (min value)         [uint8_t range: 0–255]
- *
- *   Static/global values:
- *     - mockData[] = {0x00, 0x00}       (min, min)           [uint8_t range: 0–255]
- *
-  **********************************************************************************************************************************/
- void test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData(void)
- {
-     /* Set Parameter input values */        
-     uint8_t request[] = {0x22, 0x12, 0x34};
-     uint8_t response[8] = {0};
-     uint8_t respLen = 0;
- 
- 
-     /* Function to set static variable mockData[] */
-     set_mock_data(0x00, 0x00);
- 
-     /* Function to get static variable mockData[] */
-     const uint8_t* data = get_mock_data();
- 
-
-     /* Check parameter input values and set return value of mock function Lin_SendData() */        
-     Lin_SendData_ExpectAndReturn(response, 5, E_OK); // Positive response from Lin_SendData
- 
-    /* Store return value of tested function */ 
-     Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen);
-
-
-     /* Check output values of static variable "mockData[]" */
-     TEST_ASSERT_EQUAL_UINT8(0x00, data[0]);
-     TEST_ASSERT_EQUAL_UINT8(0x00, data[1]);     
- 
-    
-     /* Check output value of parameter "respLen" */   
-     TEST_ASSERT_EQUAL_UINT8(5, respLen);
-    
-     /* Check output values of parameter "response" */        
-     TEST_ASSERT_EQUAL_UINT8(0x62, response[0]);
-     TEST_ASSERT_EQUAL_UINT8(0x12, response[1]);
-     TEST_ASSERT_EQUAL_UINT8(0x34, response[2]);
-     TEST_ASSERT_EQUAL_UINT8(0x00, response[3]);
-     TEST_ASSERT_EQUAL_UINT8(0x00, response[4]);
-
-     /* Check return of tested function */
-     TEST_ASSERT_EQUAL_UINT8(E_OK, ret);
- }
-
- /******************************************************************************************************************************** */
- /*! 
- *    @brief:        Macro to generate boundary values tests with different input values (from minimal to maximal) [unfinished]
- *                 
- *
-  **********************************************************************************************************************************/
- /* Macro to generate boundary values tests with different input values (from minimal to maximal) */
- #define RUN_BOUNDARY_TEST(VAL0, VAL1)              \
- uint8_t request[]  = {0x22, 0x12, 0x34};        \
- uint8_t reqLen      = 3;                        \
- uint8_t response[8] = {0};                      \
- uint8_t respLen     = 0;                        \
-                                                 \
- set_mock_data((VAL0), (VAL1));                  \
- const uint8_t* data = get_mock_data();          \
-                                                 \
- uint8_t expectedResp[5] = {                     \
-     0x62, request[1], request[2], (VAL0), (VAL1)\
- };                                              \
-                                                 \
- Lin_SendData_ExpectAndReturn(expectedResp, 5, E_OK); \
-                                                 \
- Std_ReturnType ret = Uds_Service_ReadDataByIdentifier(request, 3, response, &respLen); \
-                                                 \
- TEST_ASSERT_EQUAL_UINT8_ARRAY(expectedResp, response, 5); \
- TEST_ASSERT_EQUAL_UINT8(5, respLen);            \
- TEST_ASSERT_EQUAL_UINT8(E_OK, ret);             \
- TEST_ASSERT_EQUAL_UINT8((VAL0), data[0]);       \
- TEST_ASSERT_EQUAL_UINT8((VAL1), data[1]);
-/* End of macro-function to generate boundary values test cases*/
-
-
-/* Call each Test for Boundary values using macro RUN_BOUNDARY_TEST */
-/* Test for MINIMAL VALUE of mockData */
-void test_ReadDataByIdentifier_Boundary_Min(void)   { RUN_BOUNDARY_TEST(0x00, 0x00); }
-/* Test for MINIMAL+1 VALUE of mockData */
-void test_ReadDataByIdentifier_Boundary_One(void)   { RUN_BOUNDARY_TEST(0x01, 0x01); }
-/* Test for MID VALUE of mockData */
-void test_ReadDataByIdentifier_Boundary_Mid(void)   { RUN_BOUNDARY_TEST(0x7F, 0x7F); }
-/* Test for MAXIMAL-1 VALUE of mockData */
-void test_ReadDataByIdentifier_Boundary_Max1(void)  { RUN_BOUNDARY_TEST(0xFE, 0xFE); }
-/* Test for MAXIMAL VALUE of mockData */
-void test_ReadDataByIdentifier_Boundary_Max(void)   { RUN_BOUNDARY_TEST(0xFF, 0xFF); }
-
-
-
- /* --------------------------------------------------------------------------------------------- End of TEST for: Boundary values (for each data type)  -------------------------------------------------------------------- */
- /* ************************************************************************************************************************************************************************************************************************* */
- /* ************************************************************************************************************************************************************************************************************************* */
  
  
  
