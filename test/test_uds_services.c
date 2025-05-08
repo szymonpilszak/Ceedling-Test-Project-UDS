@@ -386,6 +386,7 @@
  /* Macro to generate boundary values tests with different input values (from minimal to maximal) */
  #define RUN_BOUNDARY_TEST(VAL0, VAL1)              \
  uint8_t request[]  = {0x22, 0x12, 0x34};        \
+ uint8_t reqLen      = 3;                        \
  uint8_t response[8] = {0};                      \
  uint8_t respLen     = 0;                        \
                                                  \
@@ -405,12 +406,19 @@
  TEST_ASSERT_EQUAL_UINT8(E_OK, ret);             \
  TEST_ASSERT_EQUAL_UINT8((VAL0), data[0]);       \
  TEST_ASSERT_EQUAL_UINT8((VAL1), data[1]);
+/* End of macro-function to generate boundary values test cases*/
+
 
 /* Call each Test for Boundary values using macro RUN_BOUNDARY_TEST */
+/* Test for MINIMAL VALUE of mockData */
 void test_ReadDataByIdentifier_Boundary_Min(void)   { RUN_BOUNDARY_TEST(0x00, 0x00); }
+/* Test for MINIMAL+1 VALUE of mockData */
 void test_ReadDataByIdentifier_Boundary_One(void)   { RUN_BOUNDARY_TEST(0x01, 0x01); }
+/* Test for MID VALUE of mockData */
 void test_ReadDataByIdentifier_Boundary_Mid(void)   { RUN_BOUNDARY_TEST(0x7F, 0x7F); }
+/* Test for MAXIMAL-1 VALUE of mockData */
 void test_ReadDataByIdentifier_Boundary_Max1(void)  { RUN_BOUNDARY_TEST(0xFE, 0xFE); }
+/* Test for MAXIMAL VALUE of mockData */
 void test_ReadDataByIdentifier_Boundary_Max(void)   { RUN_BOUNDARY_TEST(0xFF, 0xFF); }
 
 

@@ -144,11 +144,11 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
   run_test(test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK, "test_Uds_Service_ReadDataByIdentifier_return_from_LinSendData_different_than_E_OK_should_return_E_NOT_OK", 235);
   run_test(test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK, "test_Uds_Service_ReadDataByIdentifier_valid_did_should_return_E_OK", 281);
   run_test(test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData, "test_Uds_Service_ReadDataByIdentifier_boundary_check_MinimalValues_of_mockData", 339);
-  run_test(test_ReadDataByIdentifier_Boundary_Min, "test_ReadDataByIdentifier_Boundary_Min", 410);
-  run_test(test_ReadDataByIdentifier_Boundary_One, "test_ReadDataByIdentifier_Boundary_One", 411);
-  run_test(test_ReadDataByIdentifier_Boundary_Mid, "test_ReadDataByIdentifier_Boundary_Mid", 412);
-  run_test(test_ReadDataByIdentifier_Boundary_Max1, "test_ReadDataByIdentifier_Boundary_Max1", 413);
-  run_test(test_ReadDataByIdentifier_Boundary_Max, "test_ReadDataByIdentifier_Boundary_Max", 414);
+  run_test(test_ReadDataByIdentifier_Boundary_Min, "test_ReadDataByIdentifier_Boundary_Min", 414);
+  run_test(test_ReadDataByIdentifier_Boundary_One, "test_ReadDataByIdentifier_Boundary_One", 416);
+  run_test(test_ReadDataByIdentifier_Boundary_Mid, "test_ReadDataByIdentifier_Boundary_Mid", 418);
+  run_test(test_ReadDataByIdentifier_Boundary_Max1, "test_ReadDataByIdentifier_Boundary_Max1", 420);
+  run_test(test_ReadDataByIdentifier_Boundary_Max, "test_ReadDataByIdentifier_Boundary_Max", 422);
 
   CMock_Guts_MemFreeFinal();
   return UNITY_END();
