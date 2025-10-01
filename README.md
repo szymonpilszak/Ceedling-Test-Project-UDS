@@ -3,7 +3,7 @@
 ***Build Status***
 
 
-![Build Status](https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/szymonpilszak/Ceedling-Test-Project-UDS/actions/workflows/ci.yml/badge.svg)
 
 
 
@@ -44,5 +44,5 @@ This project demonstrates unit testing for an embedded C implementation of the U
   -  Ensure you have gcc installed (v13.3)
   -  Install Ceedling: gem install ceedling
   -  Install Python and gcovr
-  -  Clone the Repository : git clone https://github.com/szymonpilszak/UDS-Diagnostic-Service-Demo-Ceedling-C.git
+  -  Clone the Repository : git clone https://github.com/szymonpilszak/Ceedling-Test-Project-UDS.git
   -  Build and run tests: ceedling test:all
