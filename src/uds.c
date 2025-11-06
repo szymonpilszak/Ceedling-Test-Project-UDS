@@ -5,14 +5,13 @@ Std_ReturnType Uds_ProcessRequest(const uint8_t* request, uint8_t reqLen, uint8_
 
     uint8_t servResp;
     
-    switch(request[0])
+    if (request[0] == 0x22) {
+
+        servResp = Uds_Service_ReadDataByIdentifier(request, reqLen, response, respLen);
+    }
+    else
     {
-        case 0x22:
-            servResp = Uds_Service_ReadDataByIdentifier(request, reqLen, response, respLen);        
-            break;
-            
-        default:
-            servResp = E_NOT_OK;
+        servResp = E_NOT_OK;
     }
 
     return servResp;

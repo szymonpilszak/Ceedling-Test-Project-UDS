@@ -13,9 +13,14 @@ Std_ReturnType Uds_Service_ReadDataByIdentifier(const uint8_t* request, uint8_t 
 {
     Std_ReturnType retVal = E_NOT_OK;
     
-    if ((request == NULL) || (response == NULL) || (respLen == NULL) || (reqLen != 3U))
+    if ((request == NULL) || (response == NULL) || (respLen == NULL))
     {
         return E_NOT_OK;
+    }
+
+    if (reqLen != 3U) 
+    {
+        retVal = E_NOT_OK;
     }
     else 
     {
