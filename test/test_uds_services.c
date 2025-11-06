@@ -2,14 +2,14 @@
 /*! 
  *   @file   test_uds_services.c
  *
- *   @brief  This file implements Unity/CMock-based unit tests for the Uds_Service module source file:
+ *   @brief  This file implements Unity/CMock-based unit tests for the Uds_Service module, source file:
  *           -uds_service.c
  *
  *           Currently covering functions:
  *           - Uds_Service_ReadDataByIdentifier()
  *           - *additional UDS service functions to be added here*
  *
- * @details  Static internal states (e.g., mockData[]) is reset to its initial state 
+ *  @details  Static internal states (e.g., mockData[]) is reset to its initial state 
  *          ( {0xDE, 0xAD} ) after each test via uds_ResetStaticData() in tearDown().
  *              - Mocked functions must be initialized and verified with mock_Lin_Init(),
  *                mock_Lin_Verify(), and mock_Lin_Destroy().
