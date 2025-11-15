@@ -165,9 +165,9 @@ void test_ReadDataByIdentifier_Boundary_Max(void)   { RUN_BOUNDARY_TEST(0xFF, 0x
  *   
  *
  *   Parameter input values:
- *     - request  : {NULL}   (invalid value)     [uint8_t range: 0–255]
+ *     - request  : {NULL}   (invalid pointer)   [uint8_t range: 0–255]
  *     - reqLen   : 0x00     (min value)         [uint8_t range: 0–255]
- *     - response : 0x00     (invalid pointer)   [uint8_t range: 0–255]
+ *     - response : 0x00     (min value )        [uint8_t range: 0–255]
  *     - respLen  : 0x00     (min value)         [uint8_t range: 0–255]
  *
  *   Static/global values:
@@ -229,8 +229,8 @@ void test_ReadDataByIdentifier_Boundary_Max(void)   { RUN_BOUNDARY_TEST(0xFF, 0x
  *   Parameter input values:
  *     - request  : {0x00}   (min value)         [uint8_t range: 0–255]
  *     - reqLen   : 0x00     (min value)         [uint8_t range: 0–255]
- *     - response : 0x00     (invalid pointer)   [uint8_t range: 0–255] 
- *     - respLen  : NULL     (min value)         [uint8_t range: 0–255]
+ *     - response : 0x00     (min value)         [uint8_t range: 0–255] 
+ *     - respLen  : NULL     (invalid pointer)   [uint8_t range: 0–255]
  *
  *   Static/global values:
  *     - mockData[] = {0xDE, 0xAD}               [uint8_t range: 0–255]
